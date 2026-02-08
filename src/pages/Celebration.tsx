@@ -97,31 +97,22 @@ const Celebration = () => {
         <h1 className="font-display text-4xl md:text-5xl font-extrabold text-primary mb-2">
           She said YES! 💖
         </h1>
-        <p className="text-lg text-muted-foreground font-body mb-4">
+        <p className="text-lg text-muted-foreground font-body">
           Happy Valentine's Day, Madhel! 🥰
-        </p>
-        <p className="text-base md:text-lg text-primary/80 font-body italic max-w-md">
-          "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. bio ka tlga 💗"
         </p>
       </motion.div>
 
-      {/* Notification before collage */}
+      {/* Pop-up notification */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-        className="w-full max-w-md mb-8 relative z-10"
+        initial={{ opacity: 0, y: -50, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 1, type: "spring", stiffness: 200, damping: 15 }}
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-50"
       >
-        <div className="bg-white/80 backdrop-blur-sm border-2 border-valentine-rose/40 rounded-2xl p-4 shadow-lg">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xl">
-              📸
-            </div>
-            <div>
-              <p className="font-display text-sm font-semibold text-primary">Our Memories Together</p>
-              <p className="text-xs text-muted-foreground">Scroll through our favorite moments 💕</p>
-            </div>
-          </div>
+        <div className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-full px-6 py-3 shadow-xl">
+          <p className="font-body italic text-sm md:text-base text-valentine-rose">
+            "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. bio ka tlga 💗"
+          </p>
         </div>
       </motion.div>
 
