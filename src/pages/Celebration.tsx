@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import FloatingHearts from "@/components/FloatingHearts";
 import ImageLightbox from "@/components/ImageLightbox";
@@ -104,32 +104,44 @@ const Celebration = () => {
       </motion.div>
 
       {/* Pop-up notification with dark overlay */}
-      {showPopup && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          onClick={() => setShowPopup(false)}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 cursor-pointer"
-        >
+      <AnimatePresence>
+        {showPopup && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
-            className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-2xl px-8 py-6 shadow-2xl max-w-md text-center"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            onClick={() => setShowPopup(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 cursor-pointer"
           >
-            <p className="font-body italic text-base md:text-lg text-valentine-rose">
-              "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. Bading ka tlga 💗"
-            </p>
-            <p className="text-xs text-valentine-rose/60 mt-3">Tap anywhere to continue</p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -10 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-2xl px-8 py-6 shadow-2xl max-w-md text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <p className="font-body italic text-base md:text-lg text-valentine-rose">
+                "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. Bading ka tlga 💗"
+              </p>
+              <p className="text-xs text-valentine-rose/60 mt-3">Tap anywhere to continue</p>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
 
       {/* Pinterest-style masonry grid */}
-      <div className="w-full max-w-4xl relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ 
+          opacity: showPopup ? 0.3 : 1, 
+          y: showPopup ? 40 : 0,
+          scale: showPopup ? 0.95 : 1
+        }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="w-full max-w-4xl relative z-10"
+      >
         <div className="flex gap-3">
           {columns.map((column, colIndex) => (
             <div key={colIndex} className="flex-1 flex flex-col gap-3">
@@ -138,7 +150,7 @@ const Celebration = () => {
                   key={photo.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * (i % 5), duration: 0.4 }}
+                  transition={{ delay: showPopup ? 0 : 0.1 * (i % 5), duration: 0.4 }}
                   whileHover={{ scale: 1.02, zIndex: 10 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setLightboxImage(photo.src)}
@@ -177,7 +189,7 @@ const Celebration = () => {
             ))}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
       <motion.p
         initial={{ opacity: 0 }}
