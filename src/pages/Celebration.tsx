@@ -116,7 +116,7 @@ const Celebration = () => {
           className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-2xl px-8 py-6 shadow-2xl max-w-md text-center"
         >
           <p className="font-body italic text-base md:text-lg text-valentine-rose">
-            "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. bio ka tlga 💗"
+            "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. Bading ka tlga 💗"
           </p>
         </motion.div>
       </motion.div>
