@@ -86,7 +86,7 @@ const Celebration = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-valentine-blush via-background to-valentine-lavender flex flex-col items-center p-6 relative overflow-x-hidden">
-      <FloatingHearts />
+      <FloatingHearts intensity="high" />
 
       <motion.div
         initial={{ scale: 0, rotate: -10 }}
