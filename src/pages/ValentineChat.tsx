@@ -2,6 +2,8 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import FloatingHearts from "@/components/FloatingHearts";
+import ImageLightbox from "@/components/ImageLightbox";
+import markProfile from "@/assets/mark-profile.jpg";
 
 const CONVINCING_MESSAGES = [
   { sender: "Mark", text: "Are you sure? 🥺 I already bought the chocolates..." },
@@ -30,6 +32,7 @@ const ValentineChat = () => {
   const [round, setRound] = useState(0);
   const [noPosition, setNoPosition] = useState({ x: 0, y: 0 });
   const [showButtons, setShowButtons] = useState(true);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const handleYes = useCallback(() => {
     setMessages((prev) => [
@@ -87,14 +90,29 @@ const ValentineChat = () => {
       <div className="w-full max-w-md bg-card/80 backdrop-blur-sm rounded-3xl shadow-xl border border-valentine-rose/20 overflow-hidden">
         {/* Chat header bar */}
         <div className="bg-primary/10 px-5 py-3 flex items-center gap-3 border-b border-border">
-          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-lg">
-            💝
-          </div>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setLightboxImage(markProfile)}
+            className="w-10 h-10 rounded-full overflow-hidden cursor-pointer ring-2 ring-primary/30 hover:ring-primary/60 transition-all"
+          >
+            <img
+              src={markProfile}
+              alt="Mark"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
           <div>
             <p className="font-display font-bold text-foreground">Mark</p>
             <p className="text-xs text-muted-foreground">Online now</p>
           </div>
         </div>
+
+        <ImageLightbox
+          src={lightboxImage}
+          alt="Mark's profile"
+          onClose={() => setLightboxImage(null)}
+        />
 
         {/* Messages */}
         <div className="p-4 space-y-3 min-h-[300px] max-h-[400px] overflow-y-auto">
