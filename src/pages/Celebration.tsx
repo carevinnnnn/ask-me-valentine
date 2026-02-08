@@ -20,6 +20,7 @@ const getRandomHeight = () => {
 
 const Celebration = () => {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [showPopup, setShowPopup] = useState(true);
   const [photoCount, setPhotoCount] = useState(15); // Start with 15 photos (3 repeats)
 
   // Create infinite photo array with consistent heights
@@ -103,23 +104,29 @@ const Celebration = () => {
       </motion.div>
 
       {/* Pop-up notification with dark overlay */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-      >
+      {showPopup && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 1, type: "spring", stiffness: 200, damping: 15 }}
-          className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-2xl px-8 py-6 shadow-2xl max-w-md text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={() => setShowPopup(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 cursor-pointer"
         >
-          <p className="font-body italic text-base md:text-lg text-valentine-rose">
-            "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. Bading ka tlga 💗"
-          </p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
+            className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-2xl px-8 py-6 shadow-2xl max-w-md text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="font-body italic text-base md:text-lg text-valentine-rose">
+              "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. Bading ka tlga 💗"
+            </p>
+            <p className="text-xs text-valentine-rose/60 mt-3">Tap anywhere to continue</p>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
 
       {/* Pinterest-style masonry grid */}
       <div className="w-full max-w-4xl relative z-10">
