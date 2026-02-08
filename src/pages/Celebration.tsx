@@ -97,8 +97,11 @@ const Celebration = () => {
         <h1 className="font-display text-4xl md:text-5xl font-extrabold text-primary mb-2">
           She said YES! 💖
         </h1>
-        <p className="text-lg text-muted-foreground font-body">
+        <p className="text-lg text-muted-foreground font-body mb-4">
           Happy Valentine's Day, Madhel! 🥰
+        </p>
+        <p className="text-base md:text-lg text-primary/80 font-body italic max-w-md">
+          "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. bio ka tlga 💗"
         </p>
       </motion.div>
 
