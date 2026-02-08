@@ -102,18 +102,23 @@ const Celebration = () => {
         </p>
       </motion.div>
 
-      {/* Pop-up notification */}
+      {/* Pop-up notification with dark overlay */}
       <motion.div
-        initial={{ opacity: 0, y: -50, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ delay: 1, type: "spring", stiffness: 200, damping: 15 }}
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       >
-        <div className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-full px-6 py-3 shadow-xl">
-          <p className="font-body italic text-sm md:text-base text-valentine-rose">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: 1, type: "spring", stiffness: 200, damping: 15 }}
+          className="bg-valentine-blush/95 backdrop-blur-md border border-valentine-rose/30 rounded-2xl px-8 py-6 shadow-2xl max-w-md text-center"
+        >
+          <p className="font-body italic text-base md:text-lg text-valentine-rose">
             "Thank you love, for being the best girlfriend ever love youuuuuuuuuuuuuuuuuuu. bio ka tlga 💗"
           </p>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Pinterest-style masonry grid */}
