@@ -105,6 +105,26 @@ const Celebration = () => {
         </p>
       </motion.div>
 
+      {/* Notification before collage */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="w-full max-w-md mb-8 relative z-10"
+      >
+        <div className="bg-white/80 backdrop-blur-sm border-2 border-valentine-rose/40 rounded-2xl p-4 shadow-lg">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xl">
+              📸
+            </div>
+            <div>
+              <p className="font-display text-sm font-semibold text-primary">Our Memories Together</p>
+              <p className="text-xs text-muted-foreground">Scroll through our favorite moments 💕</p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Pinterest-style masonry grid */}
       <div className="w-full max-w-4xl relative z-10">
         <div className="flex gap-3">
